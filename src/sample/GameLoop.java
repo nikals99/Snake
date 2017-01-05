@@ -40,6 +40,8 @@ public class GameLoop extends AnimationTimer{
     Image[] headsBlue;
     Image[] headsGreen;
 
+    Image apple;
+
     ArrayList<PowerUp> activePowerUps;
 
     int looserSnake;
@@ -204,6 +206,8 @@ public class GameLoop extends AnimationTimer{
         headsBlue[2] = new Image("sample/images/head_blue_left.png");
         headsBlue[3] = new Image("sample/images/head_blue_right.png");
 
+        apple = new Image("sample/images/apple.png");
+
         activePowerUps = new ArrayList<PowerUp>();
 
         gc.clearRect(0, 0, GameSettings.snakeSize * GameSettings.gridWidth, 15 * GameSettings.gridHeight);
@@ -301,13 +305,10 @@ public class GameLoop extends AnimationTimer{
                 case WALL:
                     if(GameSettings.walls){
                     gc.drawImage(wallbrick,objects.get(i).getPosition().getX() * GameSettings.snakeSize, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
-                    }else{
-                        gc.setFill(Color.TRANSPARENT);
                     }
                     break;
                 case FOOD:
-                    gc.setFill(Color.RED);
-                    gc.fillRect(objects.get(i).getPosition().getX() * GameSettings.snakeSize, objects.get(i).getPosition().getY() * GameSettings.snakeSize, GameSettings.snakeSize, GameSettings.snakeSize);
+                    gc.drawImage(apple,objects.get(i).getPosition().getX() * GameSettings.snakeSize, objects.get(i).getPosition().getY() * GameSettings.snakeSize );
                     break;
                 case POWERUP_INVINCIBLE:
                     gc.drawImage(invinciblePowerUp,objects.get(i).getPosition().getX() * GameSettings.snakeSize, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
