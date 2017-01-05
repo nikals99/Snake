@@ -113,11 +113,13 @@ public class Main extends Application {
                 MultiPlayerController controller = loader.getController();
                 controller.setMain(this);
                 if(looserSnake==0){
-                    controller.setWinnerLabelText("Player 1");
+                    controller.setWinnerLabelText("Player 1 won!");
                 }else if(looserSnake == 1) {
-                    controller.setWinnerLabelText("Player 2");
+                    controller.setWinnerLabelText("Player 2 won!");
+                }else if(looserSnake == 3) {
+                    controller.setWinnerLabelText("Draw");
                 }else {
-
+                    controller.setWinnerLabelText("Game Over");
                 }
 
                 // Show the scene containing the root layout.
