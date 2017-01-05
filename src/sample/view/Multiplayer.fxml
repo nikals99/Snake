@@ -19,12 +19,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="93.0" layoutY="197.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="132.0" style="-fx-background-color: skyblue;" text="Restart">
+      <Button layoutX="93.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleRestart" prefHeight="44.0" prefWidth="132.0" style="-fx-background-color: skyblue;" text="Restart">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button layoutX="121.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-color: rosybrown;" text="Quit">
+      <Button layoutX="121.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleQuit" style="-fx-background-color: rosybrown;" text="Quit">
          <font>
             <Font size="24.0" />
          </font>

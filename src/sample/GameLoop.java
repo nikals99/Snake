@@ -42,6 +42,8 @@ public class GameLoop extends AnimationTimer{
 
     ArrayList<PowerUp> activePowerUps;
 
+    int looserSnake;
+
     @Override
     public void handle(long currentNanoTime){
         long timeElapsedLogic = currentNanoTime- lastLogicTime;
@@ -250,7 +252,7 @@ public class GameLoop extends AnimationTimer{
         }
 
         if(input.contains("ESCAPE")){
-            main.endGame();
+            main.endGame(-1);
         }
     }
 
@@ -336,8 +338,9 @@ public class GameLoop extends AnimationTimer{
                         break;
                     case WALL:
                         if (objects.get(i).getPosition().getX() == headPos.getX() && objects.get(i).getPosition().getY() == headPos.getY() && GameSettings.walls) {
-
+                            looserSnake = player;
                             gameOver(ObjectType.WALL);
+
                         }
 
                         break;
@@ -371,9 +374,8 @@ public class GameLoop extends AnimationTimer{
             //Handle self collision
             for (int i = 1; i < snakes.get(player).getPositions().size(); i++) {
                 if (snakes.get(player).getPositions().get(i).getX() == headPos.getX() && snakes.get(player).getPositions().get(i).getY() == headPos.getY() && !snakes.get(player).isInvincible()) {
-
+                    looserSnake = player;
                     gameOver(ObjectType.SNAKE);
-                    System.out.print("Player: " + player + "ate himself");
                 }
             }
 
@@ -382,7 +384,7 @@ public class GameLoop extends AnimationTimer{
                 if(otherSnakes != player) {
                     for (int i = 0; i < snakes.get(otherSnakes).getPositions().size(); i++) {
                         if (snakes.get(otherSnakes).getPositions().get(i).getX() == headPos.getX() && snakes.get(otherSnakes).getPositions().get(i).getY() == headPos.getY() && !snakes.get(player).isInvincible()){
-
+                            looserSnake = player;
                             gameOver(ObjectType.SNAKE);
                         }
                     }
@@ -444,7 +446,7 @@ public class GameLoop extends AnimationTimer{
                 break;
         }
 
-        main.endGame();
+        main.endGame(looserSnake);
 
 
     }

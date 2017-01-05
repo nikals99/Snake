@@ -78,7 +78,7 @@ public class Main extends Application {
         }
     }
 
-    public void endGame() {
+    public void endGame(int looserSnake) {
         gameLoop.stop();
 
         endOfGameStage = new Stage();
@@ -94,6 +94,7 @@ public class Main extends Application {
 
                 SinglePlayerController controller = loader.getController();
                 controller.setMain(this);
+
 
                 // Show the scene containing the root layout.
                 Scene endOfGameScene = new Scene(endOfGamePane);
@@ -111,6 +112,13 @@ public class Main extends Application {
 
                 MultiPlayerController controller = loader.getController();
                 controller.setMain(this);
+                if(looserSnake==0){
+                    controller.setWinnerLabelText("Player 1");
+                }else if(looserSnake == 1) {
+                    controller.setWinnerLabelText("Player 2");
+                }else {
+
+                }
 
                 // Show the scene containing the root layout.
                 Scene endOfGameScene = new Scene(endOfGamePane);
