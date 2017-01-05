@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import sample.models.*;
 import sample.models.Object;
 
@@ -321,6 +322,17 @@ public class GameLoop extends AnimationTimer{
             }
 
         }
+
+
+
+        //TODO Ingame UI verschieben Tipp canvassize - x
+
+        //Render Ingame UI
+        gc.setFill(Color.BLACK);
+
+        Font font = Font.loadFont(getClass().getResourceAsStream("kenvector_future_thin.ttf"), 25.0);
+        gc.setFont(font);
+        gc.fillText("Test", 300,300);
 
     }
 
