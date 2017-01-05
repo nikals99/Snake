@@ -8,7 +8,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sample.models.*;
 import sample.models.Object;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -45,7 +47,7 @@ public class GameLoop extends AnimationTimer{
 
     ArrayList<PowerUp> activePowerUps;
 
-    int looserSnake;
+    int looserSnake = -1;
 
     @Override
     public void handle(long currentNanoTime){
@@ -257,7 +259,7 @@ public class GameLoop extends AnimationTimer{
         }
 
         if(input.contains("ESCAPE")){
-            main.endGame(-1);
+            this.gameOver();
         }
     }
 
@@ -336,8 +338,16 @@ public class GameLoop extends AnimationTimer{
 
     }
 
-
     private void detectCollisons(){
+        String musicFile1 = "resources/sounds/picked_apple.wav";
+        Media picked_apple = new Media(new File(musicFile1).toURI().toString());
+        String musicFile2 = "resources/sounds/picked_slowmotion.wav";
+        Media picked_slowmotion = new Media(new File(musicFile2).toURI().toString());
+        String musicFile3 = "resources/sounds/picked_nowalls.wav";
+        Media picked_nowalls = new Media(new File(musicFile3).toURI().toString());
+        String musicFile4 = "resources/sounds/picked_invincible.wav";
+        Media picked_invincible = new Media(new File(musicFile4).toURI().toString());
+
         boolean player1isDead = false;
         boolean player2isDead = false;
 
@@ -350,6 +360,8 @@ public class GameLoop extends AnimationTimer{
                             snakes.get(player).extend();
                             objects.remove(i);
                             spawnFood();
+                            MediaPlayer mediaPlayer = new MediaPlayer(picked_apple);
+                            mediaPlayer.play();
                         }
                         break;
                     case WALL:
@@ -369,6 +381,8 @@ public class GameLoop extends AnimationTimer{
                             snakes.get(player).getActicePowerUps().add(new PowerUp(ObjectType.POWERUP_INVINCIBLE, System.currentTimeMillis() + 5000));
                             System.out.println("Added activePowerUp");
                             objects.remove(i);
+                            MediaPlayer mediaPlayer = new MediaPlayer(picked_invincible);
+                            mediaPlayer.play();
                         }
                         break;
                     case POWERUP_NOWALLS:
@@ -376,6 +390,8 @@ public class GameLoop extends AnimationTimer{
                             activePowerUps.add(new PowerUp(ObjectType.POWERUP_NOWALLS, System.currentTimeMillis() + 5000));
                             System.out.println("Added activePowerUp");
                             objects.remove(i);
+                            MediaPlayer mediaPlayer = new MediaPlayer(picked_nowalls);
+                            mediaPlayer.play();
                         }
                         break;
                     case POWERUP_SLOW:
@@ -383,6 +399,8 @@ public class GameLoop extends AnimationTimer{
                             activePowerUps.add(new PowerUp(ObjectType.POWERUP_SLOW, System.currentTimeMillis() + 5000));
                             System.out.println("Added activePowerUp");
                             objects.remove(i);
+                            MediaPlayer mediaPlayer = new MediaPlayer(picked_slowmotion);
+                            mediaPlayer.play();
                         }
                         break;
                     case SNAKE:
@@ -477,7 +495,10 @@ public class GameLoop extends AnimationTimer{
 
     private void gameOver(){
         snakeIsAlive = false;
-
+        String musicFile5 = "resources/sounds/quit_pause_game.wav";
+        Media quit_pause_game = new Media(new File(musicFile5).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(quit_pause_game);
+        mediaPlayer.play();
 
         main.endGame(looserSnake);
 
