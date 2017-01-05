@@ -19,12 +19,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="89.0" layoutY="196.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="132.0" style="-fx-background-color: skyblue;" text="Restart">
+      <Button layoutX="89.0" layoutY="196.0" mnemonicParsing="false" onAction="#handleRestart" prefHeight="44.0" prefWidth="132.0" style="-fx-background-color: skyblue;" text="Restart">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button layoutX="118.0" layoutY="255.0" mnemonicParsing="false" style="-fx-background-color: rosybrown;" text="Quit">
+      <Button layoutX="118.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleQuit" style="-fx-background-color: rosybrown;" text="Quit">
          <font>
             <Font size="24.0" />
          </font>
@@ -39,7 +39,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="winnerLabel" layoutX="113.0" layoutY="33.0" styleClass="score" text="Label">
+      <Label fx:id="winnerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="34.0" prefHeight="27.0" prefWidth="310.0" styleClass="score" text="Label" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>

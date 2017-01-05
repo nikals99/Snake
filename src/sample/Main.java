@@ -99,6 +99,7 @@ public class Main extends Application {
                 // Show the scene containing the root layout.
                 Scene endOfGameScene = new Scene(endOfGamePane);
                 endOfGameStage.setScene(endOfGameScene);
+                endOfGameStage.setOnCloseRequest(event -> exitGame());
                 endOfGameStage.show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -112,11 +113,11 @@ public class Main extends Application {
 
                 MultiPlayerController controller = loader.getController();
                 controller.setMain(this);
-                if(looserSnake==0){
+                if(looserSnake==1){
                     controller.setWinnerLabelText("Player 1 won!");
-                }else if(looserSnake == 1) {
+                }else if(looserSnake == 0) {
                     controller.setWinnerLabelText("Player 2 won!");
-                }else if(looserSnake == 3) {
+                }else if(looserSnake == 2) {
                     controller.setWinnerLabelText("Draw");
                 }else {
                     controller.setWinnerLabelText("Game Over");
@@ -125,6 +126,7 @@ public class Main extends Application {
                 // Show the scene containing the root layout.
                 Scene endOfGameScene = new Scene(endOfGamePane);
                 endOfGameStage.setScene(endOfGameScene);
+                endOfGameStage.setOnCloseRequest(event -> exitGame());
                 endOfGameStage.show();
             } catch (IOException e) {
                 e.printStackTrace();

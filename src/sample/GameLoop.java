@@ -411,7 +411,7 @@ public class GameLoop extends AnimationTimer{
                 looserSnake = 1;
                 gameOver();
             } else if(player1isDead && player2isDead){
-                looserSnake = 3;
+                looserSnake = 2;
                 gameOver();
             }
         }else {

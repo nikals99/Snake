@@ -2,6 +2,7 @@ package sample.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.text.TextAlignment;
 import sample.Main;
 
 /**
@@ -28,6 +29,7 @@ public class MultiPlayerController {
 
     public void setWinnerLabelText(String text){
         winnerLabel.setText(text);
+
     }
 
     public void setMain(Main main){
