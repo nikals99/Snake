@@ -332,8 +332,6 @@ public class GameLoop extends AnimationTimer{
                             snakes.get(player).extend();
                             objects.remove(i);
                             spawnFood();
-                            PlayerStats.score++;
-                            System.out.println("Score: " + PlayerStats.score);
                         }
                         break;
                     case WALL:
@@ -467,5 +465,10 @@ public class GameLoop extends AnimationTimer{
 
     public void setMain(Main main) {
         this.main = main;
+    }
+
+
+    public ArrayList<Snake> getSnakes() {
+        return snakes;
     }
 }

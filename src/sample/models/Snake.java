@@ -9,6 +9,7 @@ public class Snake {
     ArrayList<Position> positions;
     Direction dir;
     boolean invincible;
+    int score;
     ArrayList<PowerUp> acticePowerUps;
 
     public Snake(){
@@ -16,6 +17,7 @@ public class Snake {
         dir = Direction.DOWN;
         invincible = false;
         acticePowerUps = new ArrayList<PowerUp>();
+        int score = 0;
     }
 
     public ArrayList<Position> getPositions() {
@@ -89,6 +91,7 @@ public class Snake {
     }
 
     public boolean extend(){
+        score++;
         for(int i = 0; i < GameSettings.growthPerFood; i++) {
             positions.add(new Position(GameSettings.gridHeight + 2, GameSettings.gridWidth + 2, Direction.DOWN));
         }
@@ -120,5 +123,9 @@ public class Snake {
 
     public void setActicePowerUps(ArrayList<PowerUp> acticePowerUps) {
         this.acticePowerUps = acticePowerUps;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

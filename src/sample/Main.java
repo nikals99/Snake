@@ -6,11 +6,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.models.GameSettings;
 import sample.view.MenuController;
+import sample.view.MultiPlayerController;
 import sample.view.SinglePlayerController;
 
 
@@ -79,33 +78,50 @@ public class Main extends Application {
         }
     }
 
-    public void endGame(){
-        System.out.println("Game has ended");
+    public void endGame() {
         gameLoop.stop();
 
         endOfGameStage = new Stage();
-        endOfGameStage.setTitle("Game Over");
+
+        if (!GameSettings.multiplayer) {
+            endOfGameStage.setTitle("Game Over");
+
+            try {
+                // Load root layout from fxml file.
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("view/SinglePlayer.fxml"));
+                AnchorPane endOfGamePane = (AnchorPane) loader.load();
+
+                SinglePlayerController controller = loader.getController();
+                controller.setMain(this);
+
+                // Show the scene containing the root layout.
+                Scene endOfGameScene = new Scene(endOfGamePane);
+                endOfGameStage.setScene(endOfGameScene);
+                endOfGameStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                // Load root layout from fxml file.
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("view/Multiplayer.fxml"));
+                AnchorPane endOfGamePane = (AnchorPane) loader.load();
+
+                MultiPlayerController controller = loader.getController();
+                controller.setMain(this);
+
+                // Show the scene containing the root layout.
+                Scene endOfGameScene = new Scene(endOfGamePane);
+                endOfGameStage.setScene(endOfGameScene);
+                endOfGameStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
-
-        try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/SinglePlayer.fxml"));
-            AnchorPane endOfGamePane = (AnchorPane) loader.load();
-
-            SinglePlayerController controller = loader.getController();
-            controller.setMain(this);
-
-            // Show the scene containing the root layout.
-            Scene endOfGameScene = new Scene(endOfGamePane);
-            endOfGameStage.setScene(endOfGameScene);
-            endOfGameStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-
     }
 
     public void restartGame(){
@@ -119,6 +135,14 @@ public class Main extends Application {
         endOfGameStage.close();
         gameLoop = null;
         initMenuLayout();
+    }
+
+    public GameLoop getGameLoop() {
+        return gameLoop;
+    }
+
+    public void setGameLoop(GameLoop gameLoop) {
+        this.gameLoop = gameLoop;
     }
 
     private void handleInput(){

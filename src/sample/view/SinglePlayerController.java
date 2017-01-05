@@ -3,8 +3,6 @@ package sample.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import sample.Main;
-import sample.models.GameSettings;
-import sample.models.PlayerStats;
 
 
 /**
@@ -20,7 +18,7 @@ public class SinglePlayerController {
 
     @FXML
     public void initialize(){
-        scoreLabel.setText(String.valueOf(PlayerStats.score));
+
     }
 
     @FXML
@@ -40,5 +38,6 @@ public class SinglePlayerController {
 
     public void setMain(Main main) {
         this.main = main;
+        scoreLabel.setText(String.valueOf(main.getGameLoop().getSnakes().get(0).getScore()));
     }
 }
