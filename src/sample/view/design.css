@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'kenvector future thin';
+    src: url('kenvector_future_thin.ttf');
+}
+
+.title {
+	-fx-font-family: 'kenvector future thin';
+	-fx-font-size: 40;
+}
+
+.button {
+	-fx-font-family: 'kenvector future thin';
+	-fx-font-size: 20;
+}
+
+.text {
+	-fx-font-family: 'kenvector future thin';
+}
+
+.score {
+	-fx-font-family: 'kenvector future thin';
+	-fx-font-size:  24;
+}
