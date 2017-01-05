@@ -26,6 +26,10 @@ public class MultiPlayerController {
 
     }
 
+    public void setWinnerLabelText(String text){
+        winnerLabel.setText(text);
+    }
+
     public void setMain(Main main){
         this.main = main;
         scorePlayer1.setText(String.valueOf(main.getGameLoop().getSnakes().get(0).getScore()));
@@ -33,6 +37,17 @@ public class MultiPlayerController {
 
 
     }
+
+    @FXML
+    public void handleRestart(){
+        main.restartGame();
+    }
+
+    @FXML
+    public void handleQuit(){
+        main.exitGame();
+    }
+
 
 
 

@@ -42,6 +42,8 @@ public class GameLoop extends AnimationTimer{
 
     ArrayList<PowerUp> activePowerUps;
 
+    int looserSnake;
+
     @Override
     public void handle(long currentNanoTime){
         long timeElapsedLogic = currentNanoTime- lastLogicTime;
@@ -250,7 +252,7 @@ public class GameLoop extends AnimationTimer{
         }
 
         if(input.contains("ESCAPE")){
-            main.endGame();
+            main.endGame(-1);
         }
     }
 
@@ -323,6 +325,9 @@ public class GameLoop extends AnimationTimer{
 
 
     private void detectCollisons(){
+        boolean player1isDead = false;
+        boolean player2isDead = false;
+
         for(int player = 0; player < snakes.size(); player++) {
             Position headPos = snakes.get(player).getPositions().get(0);
             for (int i = 0; i < objects.size(); i++) {
@@ -336,8 +341,13 @@ public class GameLoop extends AnimationTimer{
                         break;
                     case WALL:
                         if (objects.get(i).getPosition().getX() == headPos.getX() && objects.get(i).getPosition().getY() == headPos.getY() && GameSettings.walls) {
+                            looserSnake = player;
+                            if(player == 0){
+                                player1isDead = true;
+                            }else {
+                                player2isDead = true;
+                            }
 
-                            gameOver(ObjectType.WALL);
                         }
 
                         break;
@@ -371,9 +381,11 @@ public class GameLoop extends AnimationTimer{
             //Handle self collision
             for (int i = 1; i < snakes.get(player).getPositions().size(); i++) {
                 if (snakes.get(player).getPositions().get(i).getX() == headPos.getX() && snakes.get(player).getPositions().get(i).getY() == headPos.getY() && !snakes.get(player).isInvincible()) {
-
-                    gameOver(ObjectType.SNAKE);
-                    System.out.print("Player: " + player + "ate himself");
+                    if(player == 0){
+                        player1isDead = true;
+                    }else {
+                        player2isDead = true;
+                    }
                 }
             }
 
@@ -382,11 +394,30 @@ public class GameLoop extends AnimationTimer{
                 if(otherSnakes != player) {
                     for (int i = 0; i < snakes.get(otherSnakes).getPositions().size(); i++) {
                         if (snakes.get(otherSnakes).getPositions().get(i).getX() == headPos.getX() && snakes.get(otherSnakes).getPositions().get(i).getY() == headPos.getY() && !snakes.get(player).isInvincible()){
-
-                            gameOver(ObjectType.SNAKE);
+                            if(player == 0){
+                                player1isDead = true;
+                            }else
+                                player2isDead = true;
                         }
                     }
                 }
+            }
+        }
+        if(GameSettings.multiplayer) {
+            if (player1isDead && !player2isDead) {
+                looserSnake = 0;
+                gameOver();
+            } else if (player2isDead && !player1isDead) {
+                looserSnake = 1;
+                gameOver();
+            } else if(player1isDead && player2isDead){
+                looserSnake = 3;
+                gameOver();
+            }
+        }else {
+            if(player1isDead){
+                looserSnake = 0;
+                gameOver();
             }
         }
     }
@@ -431,20 +462,11 @@ public class GameLoop extends AnimationTimer{
 
     }
 
-    private void gameOver(ObjectType type){
-        System.out.println("Game Over");
+    private void gameOver(){
         snakeIsAlive = false;
-        switch (type){
-            case WALL:
-                System.out.println("You ran into a wall");
-                break;
 
-            case SNAKE:
-                System.out.println("You ate yourself");
-                break;
-        }
 
-        main.endGame();
+        main.endGame(looserSnake);
 
 
     }
