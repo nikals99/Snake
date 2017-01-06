@@ -2,8 +2,12 @@ package sample.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.TextAlignment;
 import sample.Main;
+
+import java.io.File;
 
 /**
  * Created by niklas.fassbender on 05.01.2017.

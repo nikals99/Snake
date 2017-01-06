@@ -11,6 +11,7 @@ import sample.models.GameSettings;
 import sample.view.MenuController;
 import sample.view.MultiPlayerController;
 import sample.view.SinglePlayerController;
+import sample.util.soundfx;
 
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class Main extends Application {
     private Scene gameScene;
     private AnchorPane pane;
     GameLoop gameLoop;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
@@ -146,6 +148,8 @@ public class Main extends Application {
     public void exitGame(){
         endOfGameStage.close();
         gameLoop = null;
+        soundfx soundfx = new soundfx();
+        soundfx.quitGame();
         initMenuLayout();
     }
 

@@ -2,8 +2,12 @@ package sample.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import sample.Main;
 import sample.models.GameSettings;
+
+import java.io.File;
 
 /**
  * Created by niklas.fassbender on 04.01.2017.
@@ -49,6 +53,7 @@ public class MenuController {
     @FXML
     public void handleSinglePlayer(){
         GameSettings.multiplayer = false;
+
         startGame();
     }
 
@@ -111,6 +116,7 @@ public class MenuController {
     @FXML
     public void handleMultiplayer(){
         GameSettings.multiplayer = true;
+
         startGame();
 
     }
