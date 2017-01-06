@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import snake.Main;
 import snake.models.GameSettings;
+import snake.util.Soundfx;
 
 /**
  * Created by niklas.fassbender on 04.01.2017.
@@ -120,11 +121,13 @@ public class MenuController {
     @FXML
     public void handleAbout(){
         main.showAboutDialog();
+        Soundfx.startGame();
     }
 
     @FXML
     public void handleHelp(){
         main.showHelpDialog();
+        Soundfx.startGame();
     }
 
     public void setMain(Main main){

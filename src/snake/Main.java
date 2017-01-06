@@ -179,7 +179,7 @@ public class Main extends Application {
                 }else if(looserSnake == 2) {
                     controller.setWinnerLabelText("Draw");
                 }else {
-                    controller.setWinnerLabelText("Game Over");
+                    controller.setWinnerLabelText("Game Over!");
                 }
 
                 // Show the scene containing the root layout.

@@ -365,11 +365,11 @@ public class GameLoop extends AnimationTimer{
         Font font = Font.loadFont(getClass().getResourceAsStream("kenvector_future_thin.ttf"), 25.0);
         if(!GameSettings.multiplayer) {
             gc.setFont(font);
-            gc.fillText("Player 1", GameSettings.gridWidth * GameSettings.snakeSize + 10, 30);
+            gc.fillText("Player 1", GameSettings.gridWidth * GameSettings.snakeSize + 15, 30);
         }else {
             gc.setFont(font);
             gc.fillText("Player 2", GameSettings.gridWidth * GameSettings.snakeSize +150 + 10 , 30);
-            gc.fillText("Player 1", 10,30);
+            gc.fillText("Player 1", 15,30);
         }
 
        //Single Player Only

@@ -29,12 +29,12 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Text layoutX="26.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="score" text="Player 2 Score:">
+      <Text layoutX="27.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="score" text="Player 2 Score:">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Label fx:id="scorePlayer2" layoutX="253.0" layoutY="125.0" prefHeight="27.0" prefWidth="62.0" styleClass="score" text="Label">
+      <Label fx:id="scorePlayer2" layoutX="251.0" layoutY="125.0" prefHeight="27.0" prefWidth="62.0" styleClass="score" text="Label">
          <font>
             <Font size="24.0" />
          </font>
