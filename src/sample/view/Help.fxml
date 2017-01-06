@@ -23,7 +23,7 @@
       <Text layoutX="9.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Move your snake using the arrow keys. The second player uses 'W', 'A', 'S' and 'D'. " textAlignment="JUSTIFY" wrappingWidth="292.9375" />
       <ImageView layoutX="33.0" layoutY="134.0">
          <image>
-            <Image url="@../../../../../Desktop/invincible_powerup.png" />
+            <Image url="@sample/images/invincible_powerup.png" />
          </image>
       </ImageView>
       <Text layoutX="33.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Power-ups" />
