@@ -3,6 +3,7 @@ package sample.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import sample.Main;
+import sample.util.Soundfx;
 
 
 /**
@@ -28,12 +29,8 @@ public class SinglePlayerController {
 
     @FXML
     public void handleQuit(){
+        Soundfx.quitGame();
         main.exitGame();
-    }
-
-
-    public Main getMain() {
-        return main;
     }
 
     public void setMain(Main main) {

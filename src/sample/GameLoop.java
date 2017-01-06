@@ -7,7 +7,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sample.models.*;
 import sample.models.Object;
-import sample.util.soundfx;
+import sample.util.Images;
+import sample.util.Soundfx;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,24 +27,7 @@ public class GameLoop extends AnimationTimer{
     ArrayList<Snake> snakes;
     boolean snakeIsAlive = false;
 
-
     ArrayList<sample.models.Object> objects;
-
-    soundfx soundfx;
-
-    Image wallbrick;
-    Image slowMotionPowerUp;
-    Image noWallsPowerUp;
-    Image invinciblePowerUp;
-
-    Image bodypartGreen;
-
-    Image bodyPartBlue;
-
-    Image[] headsBlue;
-    Image[] headsGreen;
-
-    Image apple;
 
     ArrayList<PowerUp> activePowerUps;
 
@@ -196,29 +180,9 @@ public class GameLoop extends AnimationTimer{
     private void initGame(){
         objects = new ArrayList<Object>();
 
-        wallbrick = new Image("sample/images/wallbrick.png");
-        slowMotionPowerUp = new Image("sample/images/slowmotion_powerup.png");
-        noWallsPowerUp = new Image("sample/images/nowalls_powerup.png");
-        invinciblePowerUp = new Image("sample/images/invincible_powerup.png");
-        bodypartGreen = new Image("sample/images/bodypart_green.png");
-        bodyPartBlue = new Image("sample/images/bodypart_blue.png");
+        Soundfx.startGame();
 
-        headsGreen = new Image[4];
-        headsGreen[0] = new Image("sample/images/head_green_up.png");
-        headsGreen[1] = new Image("sample/images/head_green_down.png");
-        headsGreen[2] = new Image("sample/images/head_green_left.png");
-        headsGreen[3] = new Image("sample/images/head_green_right.png");
-
-        headsBlue = new Image[4];
-        headsBlue[0] = new Image("sample/images/head_blue_up.png");
-        headsBlue[1] = new Image("sample/images/head_blue_down.png");
-        headsBlue[2] = new Image("sample/images/head_blue_left.png");
-        headsBlue[3] = new Image("sample/images/head_blue_right.png");
-
-        apple = new Image("sample/images/apple.png");
-
-        soundfx = new soundfx();
-        soundfx.startGame();
+        Images.initArrays();
 
         activePowerUps = new ArrayList<PowerUp>();
 
@@ -294,11 +258,11 @@ public class GameLoop extends AnimationTimer{
         Image snakeBody = null;
         for (int player = 0; player < snakes.size(); player++) {
             if(player == 0) {
-                snakeHeads = headsGreen;
-                snakeBody = bodypartGreen;
+                snakeHeads = Images.headsGreen;
+                snakeBody = Images.bodypartGreen;
             }else{
-                snakeBody = bodyPartBlue;
-                snakeHeads = headsBlue;
+                snakeBody = Images.bodyPartBlue;
+                snakeHeads = Images.headsBlue;
             }
 
 
@@ -332,20 +296,20 @@ public class GameLoop extends AnimationTimer{
             switch (objects.get(i).getType()) {
                 case WALL:
                     if(GameSettings.walls){
-                        gc.drawImage(wallbrick,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
+                        gc.drawImage(Images.wallbrick,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
                     }
                     break;
                 case FOOD:
-                    gc.drawImage(apple,objects.get(i).getPosition().getX() * GameSettings.snakeSize +canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize );
+                    gc.drawImage(Images.apple,objects.get(i).getPosition().getX() * GameSettings.snakeSize +canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize );
                     break;
                 case POWERUP_INVINCIBLE:
-                    gc.drawImage(invinciblePowerUp,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
+                    gc.drawImage(Images.invinciblePowerUp,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
                     break;
                 case POWERUP_NOWALLS:
-                    gc.drawImage(noWallsPowerUp,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
+                    gc.drawImage(Images.noWallsPowerUp,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
                     break;
                 case POWERUP_SLOW:
-                    gc.drawImage(slowMotionPowerUp,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
+                    gc.drawImage(Images.slowMotionPowerUp,objects.get(i).getPosition().getX() * GameSettings.snakeSize + canvasOffset, objects.get(i).getPosition().getY() * GameSettings.snakeSize);
             }
 
         }
@@ -418,15 +382,15 @@ public class GameLoop extends AnimationTimer{
             for (int i = 0; i < tempPowerUPList.size(); i++) {
                 switch (tempPowerUPList.get(i).getType()) {
                     case POWERUP_INVINCIBLE:
-                        gc.drawImage(invinciblePowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
+                        gc.drawImage(Images.invinciblePowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
                         gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_NOWALLS:
-                        gc.drawImage(noWallsPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
+                        gc.drawImage(Images.noWallsPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
                         gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_SLOW:
-                        gc.drawImage(slowMotionPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
+                        gc.drawImage(Images.slowMotionPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
                         gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 45, 60 + 30 * i + 20);
                 }
             }
@@ -441,15 +405,15 @@ public class GameLoop extends AnimationTimer{
             for(int i = 0;i < tempPowerUPList1.size(); i++) {
                 switch (tempPowerUPList1.get(i).getType()) {
                     case POWERUP_INVINCIBLE:
-                        gc.drawImage(invinciblePowerUp,   15, 60 + 30 * i);
+                        gc.drawImage(Images.invinciblePowerUp,   15, 60 + 30 * i);
                         gc.fillText(String.valueOf(tempPowerUPList1.get(i).getEndTime() - System.currentTimeMillis()),  45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_NOWALLS:
-                        gc.drawImage(noWallsPowerUp,  15, 60 + 30 * i);
+                        gc.drawImage(Images.noWallsPowerUp,  15, 60 + 30 * i);
                         gc.fillText(String.valueOf(tempPowerUPList1.get(i).getEndTime() - System.currentTimeMillis()), 45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_SLOW:
-                        gc.drawImage(slowMotionPowerUp,  + 15, 60 + 30 * i);
+                        gc.drawImage(Images.slowMotionPowerUp,  + 15, 60 + 30 * i);
                         gc.fillText(String.valueOf(tempPowerUPList1.get(i).getEndTime() - System.currentTimeMillis()),  45, 60 + 30 * i + 20);
                 }
             }
@@ -460,15 +424,15 @@ public class GameLoop extends AnimationTimer{
             for(int i = 0;i < tempPowerUPList2.size(); i++){
                 switch (tempPowerUPList2.get(i).getType()) {
                     case POWERUP_INVINCIBLE:
-                        gc.drawImage(invinciblePowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15 ,60 + 30 *i);
+                        gc.drawImage(Images.invinciblePowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15 ,60 + 30 *i);
                         gc.fillText(String.valueOf(tempPowerUPList2.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 45, 60+ 30*i + 20);
                         break;
                     case POWERUP_NOWALLS:
-                        gc.drawImage(noWallsPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15 ,60 + 30 *i);
+                        gc.drawImage(Images.noWallsPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15 ,60 + 30 *i);
                         gc.fillText(String.valueOf(tempPowerUPList2.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 45, 60+ 30*i + 20);
                         break;
                     case POWERUP_SLOW:
-                        gc.drawImage(slowMotionPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15,60 + 30 *i);
+                        gc.drawImage(Images.slowMotionPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15,60 + 30 *i);
                         gc.fillText(String.valueOf(tempPowerUPList2.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 45, 60+ 30*i + 20);
                 }
             }
@@ -488,7 +452,7 @@ public class GameLoop extends AnimationTimer{
                             snakes.get(player).extend();
                             objects.remove(i);
                             spawnFood();
-                            soundfx.picked_apple();
+                            Soundfx.picked_apple();
 
                         }
                         break;
@@ -509,7 +473,7 @@ public class GameLoop extends AnimationTimer{
                             snakes.get(player).getActivePowerUps().add(new PowerUp(ObjectType.POWERUP_INVINCIBLE, System.currentTimeMillis() + 5000));
                             System.out.println("Added activePowerUp");
                             objects.remove(i);
-                            soundfx.picked_invincible();
+                            Soundfx.picked_invincible();
                         }
                         break;
                     case POWERUP_NOWALLS:
@@ -517,7 +481,7 @@ public class GameLoop extends AnimationTimer{
                             activePowerUps.add(new PowerUp(ObjectType.POWERUP_NOWALLS, System.currentTimeMillis() + 5000));
                             System.out.println("Added activePowerUp");
                             objects.remove(i);
-                            soundfx.picked_nowalls();
+                            Soundfx.picked_nowalls();
                         }
                         break;
                     case POWERUP_SLOW:
@@ -525,7 +489,7 @@ public class GameLoop extends AnimationTimer{
                             activePowerUps.add(new PowerUp(ObjectType.POWERUP_SLOW, System.currentTimeMillis() + 5000));
                             System.out.println("Added activePowerUp");
                             objects.remove(i);
-                            soundfx.picked_slowmotion();
+                            Soundfx.picked_slowmotion();
                         }
                         break;
                     case SNAKE:
@@ -620,17 +584,11 @@ public class GameLoop extends AnimationTimer{
 
     private void gameOver(){
         snakeIsAlive = false;
-        soundfx.quitGame();
+        Soundfx.quitGame();
 
         main.endGame(looserSnake);
 
 
-    }
-
-    public void restartGame(){
-        snakes = null;
-        objects = null;
-        initGame();
     }
 
     public void setGc(GraphicsContext gc) {

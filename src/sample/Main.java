@@ -11,8 +11,6 @@ import sample.models.GameSettings;
 import sample.view.MenuController;
 import sample.view.MultiPlayerController;
 import sample.view.SinglePlayerController;
-import sample.util.soundfx;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,37 +31,9 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Snake");
 
-
-
         initMenuLayout();
 
-
         primaryStage.show();
-    }
-
-
-
-    public void loadGame(){
-        Group root = new Group();
-        gameScene = new Scene(root);
-        int addCanvasSize = 0;
-        if(!GameSettings.multiplayer){
-            addCanvasSize = 150;
-        }else {
-            addCanvasSize = 300;
-        }
-
-        Canvas canvas = new Canvas(GameSettings.gridWidth*GameSettings.snakeSize + addCanvasSize,GameSettings.gridHeight*GameSettings.snakeSize);
-        root.getChildren().add(canvas);
-
-        primaryStage.setScene(gameScene);
-        handleInput();
-
-        gameLoop = new GameLoop();
-        gameLoop.setMain(this);
-        gameLoop.setGc(canvas.getGraphicsContext2D());
-        gameLoop.start();
-
     }
 
     public void initMenuLayout(){
@@ -83,6 +53,30 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadGame(){
+        Group root = new Group();
+        gameScene = new Scene(root);
+
+        int addCanvasSize = 0;
+        if(!GameSettings.multiplayer){
+            addCanvasSize = 150;
+        }else {
+            addCanvasSize = 300;
+        }
+
+        Canvas canvas = new Canvas(GameSettings.gridWidth*GameSettings.snakeSize + addCanvasSize,GameSettings.gridHeight*GameSettings.snakeSize);
+        root.getChildren().add(canvas);
+
+        primaryStage.setScene(gameScene);
+        handleInput();
+
+        gameLoop = new GameLoop();
+        gameLoop.setMain(this);
+        gameLoop.setGc(canvas.getGraphicsContext2D());
+        gameLoop.start();
+
     }
 
     public void endGame(int looserSnake) {
@@ -150,21 +144,14 @@ public class Main extends Application {
         loadGame();
     }
 
-
     public void exitGame(){
         endOfGameStage.close();
         gameLoop = null;
-        soundfx soundfx = new soundfx();
-        soundfx.quitGame();
         initMenuLayout();
     }
 
     public GameLoop getGameLoop() {
         return gameLoop;
-    }
-
-    public void setGameLoop(GameLoop gameLoop) {
-        this.gameLoop = gameLoop;
     }
 
     private void handleInput(){
@@ -184,9 +171,6 @@ public class Main extends Application {
                     input.remove( code );
                 });
     }
-
-
-
 
     //Start Method
     public static void main(String[] args) {
