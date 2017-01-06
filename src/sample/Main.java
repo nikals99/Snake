@@ -8,9 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.models.GameSettings;
-import sample.view.MenuController;
-import sample.view.MultiPlayerController;
-import sample.view.SinglePlayerController;
+import sample.view.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +17,8 @@ import java.util.ArrayList;
 public class Main extends Application {
 
     Stage endOfGameStage;
+    Stage helpStage;
+    Stage aboutStage;
     public static ArrayList<String> input;
     private Stage primaryStage;
     private Scene mainScene;
@@ -53,6 +53,64 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void showHelpDialog(){
+        helpStage = new Stage();
+        helpStage.setTitle("Help");
+
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/Help.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            HelpController controller = loader.getController();
+            controller.setMain(this);
+
+
+
+            // Show the scene containing the root layout.
+            Scene endOfGameScene = new Scene(anchorPane);
+            helpStage.setScene(endOfGameScene);
+            helpStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void showAboutDialog(){
+        aboutStage = new Stage();
+        aboutStage.setTitle("About");
+
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/About.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            AboutController controller = loader.getController();
+            controller.setMain(this);
+
+
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(anchorPane);
+            aboutStage.setScene(scene);
+            aboutStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void closeHelpDialog(){
+        helpStage.close();
+    }
+
+    public void closeAboutDialog(){
+        aboutStage.close();
     }
 
     public void loadGame(){
