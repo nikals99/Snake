@@ -12,6 +12,7 @@ public class GameSettings {
     public static boolean walls = true;
 
     public static int speed = 150;
+    public static int normalSpeed = 150;
     public static boolean invincible = false;
 
 

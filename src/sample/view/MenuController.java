@@ -60,16 +60,16 @@ public class MenuController {
     public void startGame(){
         switch (difficulty.getSelectionModel().getSelectedItem()){
             case "Easy":
-                GameSettings.speed = 150;
+                GameSettings.normalSpeed = 150;
                 break;
             case "Medium":
-                GameSettings.speed = 100;
+                GameSettings.normalSpeed = 100;
                 break;
             case "Hard":
-                GameSettings.speed = 50;
+                GameSettings.normalSpeed = 50;
                 break;
             default:
-                GameSettings.speed = 100;
+                GameSettings.normalSpeed = 100;
                 break;
         }
 
