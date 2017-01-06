@@ -90,7 +90,6 @@ public class GameLoop extends AnimationTimer{
                         break;
                 }
                 activePowerUps.remove(i);
-                System.out.println("Removed Active PowerUp");
             } else {
                 switch (activePowerUps.get(i).getType()) {
                     case POWERUP_NOWALLS:
@@ -120,7 +119,6 @@ public class GameLoop extends AnimationTimer{
                             break;
                     }
                     snakes.get(player).getActivePowerUps().remove(i);
-                    System.out.println("Removed Active PowerUp");
                 } else {
                     switch (snakes.get(player).getActivePowerUps().get(i).getType()) {
                         case POWERUP_NOWALLS:
@@ -471,7 +469,6 @@ public class GameLoop extends AnimationTimer{
                     case POWERUP_INVINCIBLE:
                         if (objects.get(i).getPosition().getX() == headPos.getX() && objects.get(i).getPosition().getY() == headPos.getY()) {
                             snakes.get(player).getActivePowerUps().add(new PowerUp(ObjectType.POWERUP_INVINCIBLE, System.currentTimeMillis() + 5000));
-                            System.out.println("Added activePowerUp");
                             objects.remove(i);
                             Soundfx.picked_invincible();
                         }
@@ -479,7 +476,6 @@ public class GameLoop extends AnimationTimer{
                     case POWERUP_NOWALLS:
                         if (objects.get(i).getPosition().getX() == headPos.getX() && objects.get(i).getPosition().getY() == headPos.getY()) {
                             activePowerUps.add(new PowerUp(ObjectType.POWERUP_NOWALLS, System.currentTimeMillis() + 5000));
-                            System.out.println("Added activePowerUp");
                             objects.remove(i);
                             Soundfx.picked_nowalls();
                         }
@@ -487,7 +483,6 @@ public class GameLoop extends AnimationTimer{
                     case POWERUP_SLOW:
                         if (objects.get(i).getPosition().getX() == headPos.getX() && objects.get(i).getPosition().getY() == headPos.getY()) {
                             activePowerUps.add(new PowerUp(ObjectType.POWERUP_SLOW, System.currentTimeMillis() + 5000));
-                            System.out.println("Added activePowerUp");
                             objects.remove(i);
                             Soundfx.picked_slowmotion();
                         }
