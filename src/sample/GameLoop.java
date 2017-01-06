@@ -125,8 +125,8 @@ public class GameLoop extends AnimationTimer{
         }
 
         for(int player = 0; player < snakes.size();player++){
-            for(int i = 0; i <snakes.get(player).getActicePowerUps().size(); i++){
-                if (snakes.get(player).getActicePowerUps().get(i).getEndTime() < System.currentTimeMillis()) {
+            for(int i = 0; i <snakes.get(player).().size(); i++){
+                if (snakes.get(player).getActivePowerUps().get(i).getEndTime() < System.currentTimeMillis()) {
                     switch (snakes.get(player).getActicePowerUps().get(i).getType()) {
                         case POWERUP_NOWALLS:
 
