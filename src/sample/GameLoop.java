@@ -287,9 +287,6 @@ public class GameLoop extends AnimationTimer{
         renderIngameUI();
 
 
-
-        //TODO Ingame UI verschieben Tipp canvassize - x
-
     }
 
     private void renderSnakes(){
