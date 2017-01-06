@@ -368,19 +368,21 @@ public class GameLoop extends AnimationTimer{
         ArrayList<PowerUp> tempPowerUPList = new ArrayList<PowerUp>();
         tempPowerUPList.addAll(snakes.get(0).getActicePowerUps());
         tempPowerUPList.addAll(activePowerUps);
-        for(int i = 0;i < tempPowerUPList.size(); i++){
-            switch (tempPowerUPList.get(i).getType()) {
-                case POWERUP_INVINCIBLE:
-                    gc.drawImage(invinciblePowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 10 ,60 + 30 *i);
-                    gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60+ 30*i + 20);
-                    break;
-                case POWERUP_NOWALLS:
-                    gc.drawImage(noWallsPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 10 ,60 + 30 *i);
-                    gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60+ 30*i + 20);
-                    break;
-                case POWERUP_SLOW:
-                    gc.drawImage(slowMotionPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 10,60 + 30 *i);
-                    gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60+ 30*i + 20);
+        if(!GameSettings.multiplayer) {
+            for (int i = 0; i < tempPowerUPList.size(); i++) {
+                switch (tempPowerUPList.get(i).getType()) {
+                    case POWERUP_INVINCIBLE:
+                        gc.drawImage(invinciblePowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 10, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60 + 30 * i + 20);
+                        break;
+                    case POWERUP_NOWALLS:
+                        gc.drawImage(noWallsPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 10, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60 + 30 * i + 20);
+                        break;
+                    case POWERUP_SLOW:
+                        gc.drawImage(slowMotionPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 10, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60 + 30 * i + 20);
+                }
             }
         }
 
