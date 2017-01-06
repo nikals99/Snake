@@ -1,20 +1,20 @@
-package sample;
+package snake;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import sample.models.*;
-import sample.models.Object;
-import sample.util.Images;
-import sample.util.Soundfx;
+import snake.models.*;
+import snake.models.Object;
+import snake.util.Images;
+import snake.util.Soundfx;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static sample.Main.input;
+import static snake.Main.input;
 
 
 public class GameLoop extends AnimationTimer{
@@ -27,7 +27,7 @@ public class GameLoop extends AnimationTimer{
     ArrayList<Snake> snakes;
     boolean snakeIsAlive = false;
 
-    ArrayList<sample.models.Object> objects;
+    ArrayList<snake.models.Object> objects;
 
     ArrayList<PowerUp> activePowerUps;
 
@@ -314,10 +314,10 @@ public class GameLoop extends AnimationTimer{
     }
 
     private void renderIngameUI(){
-        Image image250 = new Image("sample/images/250.png");
-        Image image500 = new Image("sample/images/500.png");
-        Image image625 = new Image("sample/images/625.png");
-        Image image875 = new Image("sample/images/875.png");
+        Image image250 = new Image("snake/images/250.png");
+        Image image500 = new Image("snake/images/500.png");
+        Image image625 = new Image("snake/images/625.png");
+        Image image875 = new Image("snake/images/875.png");
 
 
         if(GameSettings.multiplayer){

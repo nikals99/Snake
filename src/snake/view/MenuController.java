@@ -1,13 +1,9 @@
-package sample.view;
+package snake.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import sample.Main;
-import sample.models.GameSettings;
-
-import java.io.File;
+import snake.Main;
+import snake.models.GameSettings;
 
 /**
  * Created by niklas.fassbender on 04.01.2017.

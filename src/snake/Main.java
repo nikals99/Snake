@@ -1,4 +1,4 @@
-package sample;
+package snake;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,8 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import sample.models.GameSettings;
-import sample.view.*;
+import snake.models.GameSettings;
+import snake.view.*;
 
 import java.io.IOException;
 import java.util.ArrayList;

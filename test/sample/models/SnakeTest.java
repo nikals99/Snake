@@ -1,4 +1,4 @@
-package sample.models;
+package snake.models;
 
 import org.junit.Test;
 import org.junit.Assert;

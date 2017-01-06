@@ -1,17 +1,18 @@
-package sample.view;
+package snake.view;
 
 import javafx.fxml.FXML;
-import sample.Main;
+import snake.Main;
 
 /**
  * Created by niklas.fassbender on 06.01.2017.
  */
-public class AboutController {
+public class HelpController {
 
     Main main;
+
     @FXML
     public void handleClose(){
-        main.closeAboutDialog();
+        main.closeHelpDialog();
     }
 
     public void setMain(Main main) {

@@ -1,4 +1,4 @@
-package sample.util;
+package snake.util;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

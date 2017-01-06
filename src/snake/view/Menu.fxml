@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" style="-fx-background-color: papayawhip;" styleClass="text" stylesheets="@design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" style="-fx-background-color: papayawhip;" styleClass="text" stylesheets="@design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="snake.view.MenuController">
    <children>
       <Text layoutX="229.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Snake" AnchorPane.leftAnchor="229.0" AnchorPane.rightAnchor="229.59375" />
       <Button layoutX="102.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleSinglePlayer" style="-fx-background-color: skyblue;" text="Singleplayer" AnchorPane.leftAnchor="102.0" />

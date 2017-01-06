@@ -1,4 +1,4 @@
-package sample.models;
+package snake.models;
 
 /**
  * Created by niklas.fassbender on 02.01.2017.

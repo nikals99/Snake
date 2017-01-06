@@ -1,9 +1,9 @@
-package sample.view;
+package snake.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import sample.Main;
-import sample.util.Soundfx;
+import snake.Main;
+import snake.util.Soundfx;
 
 /**
  * Created by niklas.fassbender on 05.01.2017.
