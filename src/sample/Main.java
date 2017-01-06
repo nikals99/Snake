@@ -44,9 +44,14 @@ public class Main extends Application {
     public void loadGame(){
         Group root = new Group();
         gameScene = new Scene(root);
+        int addCanvasSize = 0;
+        if(!GameSettings.multiplayer){
+            addCanvasSize = 150;
+        }else {
+            addCanvasSize = 300;
+        }
 
-
-        Canvas canvas = new Canvas(GameSettings.gridWidth*GameSettings.snakeSize,GameSettings.gridHeight*GameSettings.snakeSize);
+        Canvas canvas = new Canvas(GameSettings.gridWidth*GameSettings.snakeSize + addCanvasSize,GameSettings.gridHeight*GameSettings.snakeSize);
         root.getChildren().add(canvas);
 
         primaryStage.setScene(gameScene);
