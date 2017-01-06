@@ -18,7 +18,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Text layoutX="12.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="This game is made by Niklas Fassbender and Raza Ahmed at the AOE headquarter in Wiesbaden." textAlignment="JUSTIFY" wrappingWidth="286.9375" />
+      <Text layoutX="9.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="This game was made by Niklas Fassbender and Raza Ahmed at the AOE headquarter in Wiesbaden." textAlignment="JUSTIFY" wrappingWidth="292.9375" />
       <Text layoutX="12.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Used sounds by" />
       <Text layoutX="12.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="ViRiX Dreamcore (David McKee) soundcloud.com/virix" wrappingWidth="242.447265625" />
       <Text layoutX="12.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Version 1.0" />
