@@ -354,6 +354,20 @@ public class GameLoop extends AnimationTimer{
     }
 
     private void renderIngameUI(){
+        switch (GameSettings.gridHeight){
+            case 10:
+                break;
+
+            case 20:
+                break;
+
+            case 25:
+                break;
+
+            case 35:
+                break;
+        }
+
         gc.setFill(Color.BLACK);
         Font font = Font.loadFont(getClass().getResourceAsStream("kenvector_future_thin.ttf"), 25.0);
         if(!GameSettings.multiplayer) {
