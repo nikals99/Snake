@@ -3,15 +3,12 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sample.models.*;
 import sample.models.Object;
 import sample.util.soundfx;
 
-import java.io.File;
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -79,7 +76,7 @@ public class GameLoop extends AnimationTimer{
 
                 //Move the snake
                 moveSnake();
-                detectCollisons();
+                detectCollisions();
                 handleActivePowerUps();
 
 
@@ -481,7 +478,7 @@ public class GameLoop extends AnimationTimer{
         }
     }
 
-    private void detectCollisons(){
+    private void detectCollisions(){
         boolean player1isDead = false;
         boolean player2isDead = false;
 
