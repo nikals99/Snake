@@ -145,6 +145,7 @@ public class Main extends Application {
 
     public void restartGame(){
         endOfGameStage.close();
+        gameLoop.getActivePowerUps().remove(gameLoop.getActivePowerUps());
         gameLoop = null;
         loadGame();
     }

@@ -92,6 +92,10 @@ public class GameLoop extends AnimationTimer{
     }
 
     private void handleActivePowerUps() {
+        if(activePowerUps.size() == 0){
+            GameSettings.walls = true;
+            GameSettings.speed = GameSettings.normalSpeed;
+        }
         for (int i = 0; i < activePowerUps.size(); i++) {
             if (activePowerUps.get(i).getEndTime() < System.currentTimeMillis()) {
                 switch (activePowerUps.get(i).getType()) {
@@ -99,7 +103,7 @@ public class GameLoop extends AnimationTimer{
                         GameSettings.walls = true;
                         break;
                     case POWERUP_SLOW:
-                        GameSettings.speed = 100;
+                        GameSettings.speed = GameSettings.normalSpeed;
                         break;
                     case POWERUP_INVINCIBLE:
                         break;
@@ -354,19 +358,52 @@ public class GameLoop extends AnimationTimer{
     }
 
     private void renderIngameUI(){
-        switch (GameSettings.gridHeight){
-            case 10:
-                break;
+        Image image250 = new Image("sample/images/250.png");
+        Image image500 = new Image("sample/images/500.png");
+        Image image625 = new Image("sample/images/625.png");
+        Image image875 = new Image("sample/images/875.png");
 
-            case 20:
-                break;
 
-            case 25:
-                break;
-
-            case 35:
-                break;
+        if(GameSettings.multiplayer){
+            switch (GameSettings.gridHeight){
+                case 10:
+                    gc.drawImage(image250, 0, 0);
+                    gc.drawImage(image250, GameSettings.gridWidth * GameSettings.snakeSize + 150, 0);
+                    break;
+                case 20:
+                    gc.drawImage(image500, 0, 0);
+                    gc.drawImage(image500, GameSettings.gridWidth * GameSettings.snakeSize + 150, 0);
+                    break;
+                case 25:
+                    gc.drawImage(image625, 0, 0);
+                    gc.drawImage(image625, GameSettings.gridWidth * GameSettings.snakeSize + 150, 0);
+                    break;
+                case 35:
+                    gc.drawImage(image875, 0, 0);
+                    gc.drawImage(image875, GameSettings.gridWidth * GameSettings.snakeSize + 150, 0);
+                    break;
+                default:
+                    break;
+            }
+        }else {
+            switch (GameSettings.gridHeight){
+                case 10:
+                    gc.drawImage(image250, GameSettings.gridWidth * GameSettings.snakeSize, 0);
+                    break;
+                case 20:
+                    gc.drawImage(image500, GameSettings.gridWidth * GameSettings.snakeSize, 0);
+                    break;
+                case 25:
+                    gc.drawImage(image625, GameSettings.gridWidth * GameSettings.snakeSize, 0);
+                    break;
+                case 35:
+                    gc.drawImage(image875, GameSettings.gridWidth * GameSettings.snakeSize, 0);
+                    break;
+                default:
+                    break;
+            }
         }
+
 
         gc.setFill(Color.BLACK);
         Font font = Font.loadFont(getClass().getResourceAsStream("kenvector_future_thin.ttf"), 25.0);
@@ -379,63 +416,66 @@ public class GameLoop extends AnimationTimer{
             gc.fillText("Player 1", 10,30);
         }
 
-        ArrayList<PowerUp> tempPowerUPList = new ArrayList<PowerUp>();
-        tempPowerUPList.addAll(snakes.get(0).getActicePowerUps());
-        tempPowerUPList.addAll(activePowerUps);
+       //Single Player Only
         if(!GameSettings.multiplayer) {
+            ArrayList<PowerUp> tempPowerUPList = new ArrayList<PowerUp>();
+            tempPowerUPList.addAll(snakes.get(0).getActicePowerUps());
+            tempPowerUPList.addAll(activePowerUps);
             for (int i = 0; i < tempPowerUPList.size(); i++) {
                 switch (tempPowerUPList.get(i).getType()) {
                     case POWERUP_INVINCIBLE:
-                        gc.drawImage(invinciblePowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 10, 60 + 30 * i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60 + 30 * i + 20);
+                        gc.drawImage(invinciblePowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_NOWALLS:
-                        gc.drawImage(noWallsPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 10, 60 + 30 * i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60 + 30 * i + 20);
+                        gc.drawImage(noWallsPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_SLOW:
-                        gc.drawImage(slowMotionPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 10, 60 + 30 * i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 40, 60 + 30 * i + 20);
+                        gc.drawImage(slowMotionPowerUp, GameSettings.gridWidth * GameSettings.snakeSize + 15, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 45, 60 + 30 * i + 20);
                 }
             }
         }
 
         if(GameSettings.multiplayer){
+
+            //Player oneOnly
             ArrayList<PowerUp> tempPowerUPList1 = new ArrayList<PowerUp>();
             tempPowerUPList1.addAll(snakes.get(0).getActicePowerUps());
             tempPowerUPList1.addAll(activePowerUps);
-            for(int i = 0;i < tempPowerUPList.size(); i++) {
-                switch (tempPowerUPList.get(i).getType()) {
+            for(int i = 0;i < tempPowerUPList1.size(); i++) {
+                switch (tempPowerUPList1.get(i).getType()) {
                     case POWERUP_INVINCIBLE:
-                        gc.drawImage(invinciblePowerUp,   10, 60 + 30 * i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()),  40, 60 + 30 * i + 20);
+                        gc.drawImage(invinciblePowerUp,   15, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList1.get(i).getEndTime() - System.currentTimeMillis()),  45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_NOWALLS:
-                        gc.drawImage(noWallsPowerUp,  10, 60 + 30 * i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), 40, 60 + 30 * i + 20);
+                        gc.drawImage(noWallsPowerUp,  15, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList1.get(i).getEndTime() - System.currentTimeMillis()), 45, 60 + 30 * i + 20);
                         break;
                     case POWERUP_SLOW:
-                        gc.drawImage(slowMotionPowerUp,  + 10, 60 + 30 * i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()),  40, 60 + 30 * i + 20);
+                        gc.drawImage(slowMotionPowerUp,  + 15, 60 + 30 * i);
+                        gc.fillText(String.valueOf(tempPowerUPList1.get(i).getEndTime() - System.currentTimeMillis()),  45, 60 + 30 * i + 20);
                 }
             }
 
             ArrayList<PowerUp> tempPowerUPList2 = new ArrayList<PowerUp>();
             tempPowerUPList2.addAll(snakes.get(1).getActicePowerUps());
             tempPowerUPList2.addAll(activePowerUps);
-            for(int i = 0;i < tempPowerUPList.size(); i++){
-                switch (tempPowerUPList.get(i).getType()) {
+            for(int i = 0;i < tempPowerUPList2.size(); i++){
+                switch (tempPowerUPList2.get(i).getType()) {
                     case POWERUP_INVINCIBLE:
-                        gc.drawImage(invinciblePowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 10 ,60 + 30 *i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 40, 60+ 30*i + 20);
+                        gc.drawImage(invinciblePowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15 ,60 + 30 *i);
+                        gc.fillText(String.valueOf(tempPowerUPList2.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 45, 60+ 30*i + 20);
                         break;
                     case POWERUP_NOWALLS:
-                        gc.drawImage(noWallsPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 10 ,60 + 30 *i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 40, 60+ 30*i + 20);
+                        gc.drawImage(noWallsPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15 ,60 + 30 *i);
+                        gc.fillText(String.valueOf(tempPowerUPList2.get(i).getEndTime() -System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 45, 60+ 30*i + 20);
                         break;
                     case POWERUP_SLOW:
-                        gc.drawImage(slowMotionPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 10,60 + 30 *i);
-                        gc.fillText(String.valueOf(tempPowerUPList.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 40, 60+ 30*i + 20);
+                        gc.drawImage(slowMotionPowerUp,GameSettings.gridWidth * GameSettings.snakeSize + 150 + 15,60 + 30 *i);
+                        gc.fillText(String.valueOf(tempPowerUPList2.get(i).getEndTime() - System.currentTimeMillis()), GameSettings.gridWidth * GameSettings.snakeSize + 150 + 45, 60+ 30*i + 20);
                 }
             }
         }
@@ -607,6 +647,9 @@ public class GameLoop extends AnimationTimer{
         this.main = main;
     }
 
+    public ArrayList<PowerUp> getActivePowerUps() {
+        return activePowerUps;
+    }
 
     public ArrayList<Snake> getSnakes() {
         return snakes;
