@@ -143,8 +143,8 @@ public class Main extends Application {
 
     public void restartGame(){
         endOfGameStage.close();
-        gameLoop.restartGame();
-        gameLoop.start();
+        gameLoop = null;
+        loadGame();
     }
 
 
