@@ -7,18 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: papayawhip;" styleClass="text" stylesheets="@design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" style="-fx-background-color: papayawhip;" styleClass="text" stylesheets="@design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.MenuController">
    <children>
       <Text layoutX="229.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Snake" AnchorPane.leftAnchor="229.0" AnchorPane.rightAnchor="229.59375" />
-      <Button layoutX="102.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleSinglePlayer" style="-fx-background-color: skyblue;" text="Singleplayer" AnchorPane.leftAnchor="102.0" />
-      <ComboBox fx:id="difficulty" layoutX="289.0" layoutY="226.0" prefWidth="150.0" style="-fx-background-color: mintcream;" />
-      <Text layoutX="175.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty" />
-      <Text layoutX="175.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level size" />
-      <ComboBox fx:id="levelSize" layoutX="289.0" layoutY="261.0" prefWidth="150.0" style="-fx-background-color: mintcream;" />
-      <Text layoutX="156.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Growth per item" />
-      <Text layoutX="166.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="by Niklas Fassbender and Raza Ahmed" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="167.46875" />
-      <Button layoutX="321.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleMultiplayer" style="-fx-background-color: lightgreen;" text="Multiplayer" />
-      <ComboBox fx:id="growthPerFood" layoutX="289.0" layoutY="296.0" prefWidth="150.0" style="-fx-background-color: mintcream;" />
+      <Button layoutX="102.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleSinglePlayer" style="-fx-background-color: skyblue;" text="Singleplayer" AnchorPane.leftAnchor="102.0" />
+      <ComboBox fx:id="difficulty" layoutX="289.0" layoutY="292.0" prefWidth="150.0" style="-fx-background-color: mintcream;" />
+      <Text layoutX="175.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty" />
+      <Text layoutX="175.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level size" />
+      <ComboBox fx:id="levelSize" layoutX="289.0" layoutY="324.0" prefWidth="150.0" style="-fx-background-color: mintcream;" />
+      <Text layoutX="156.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Growth per item" />
+      <Text layoutX="166.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="by Niklas Fassbender and Raza Ahmed" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="167.46875" />
+      <Button layoutX="321.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleMultiplayer" style="-fx-background-color: lightgreen;" text="Multiplayer" />
+      <ComboBox fx:id="growthPerFood" layoutX="289.0" layoutY="356.0" prefWidth="150.0" style="-fx-background-color: mintcream;" />
+      <Button layoutX="361.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: khaki;" text="About" />
+      <Button layoutX="155.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: palevioletred;" text="Help" />
    </children>
    <effect>
       <InnerShadow />
