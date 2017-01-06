@@ -19,8 +19,8 @@
       <Text layoutX="166.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="by Niklas Fassbender and Raza Ahmed" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="167.46875" />
       <Button layoutX="321.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleMultiplayer" style="-fx-background-color: lightgreen;" text="Multiplayer" />
       <ComboBox fx:id="growthPerFood" layoutX="289.0" layoutY="356.0" prefWidth="150.0" style="-fx-background-color: mintcream;" />
-      <Button layoutX="361.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: khaki;" text="About" />
-      <Button layoutX="155.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: palevioletred;" text="Help" />
+      <Button layoutX="361.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleAbout" style="-fx-background-color: khaki;" text="About" />
+      <Button layoutX="155.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleHelp" style="-fx-background-color: palevioletred;" text="Help" />
    </children>
    <effect>
       <InnerShadow />

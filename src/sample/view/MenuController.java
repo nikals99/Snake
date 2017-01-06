@@ -121,6 +121,15 @@ public class MenuController {
 
     }
 
+    @FXML
+    public void handleAbout(){
+        main.showAboutDialog();
+    }
+
+    @FXML
+    public void handleHelp(){
+        main.showHelpDialog();
+    }
 
     public void setMain(Main main){
         this.main = main;
