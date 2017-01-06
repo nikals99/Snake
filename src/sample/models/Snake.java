@@ -117,7 +117,7 @@ public class Snake {
         this.invincible = invincible;
     }
 
-    public ArrayList<PowerUp> getActicePowerUps() {
+    public ArrayList<PowerUp> getActivePowerUps() {
         return acticePowerUps;
     }
 

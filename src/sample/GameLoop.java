@@ -3,15 +3,12 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sample.models.*;
 import sample.models.Object;
 import sample.util.soundfx;
 
-import java.io.File;
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -121,9 +118,9 @@ public class GameLoop extends AnimationTimer{
         }
 
         for(int player = 0; player < snakes.size();player++){
-            for(int i = 0; i <snakes.get(player).getActicePowerUps().size(); i++){
-                if (snakes.get(player).getActicePowerUps().get(i).getEndTime() < System.currentTimeMillis()) {
-                    switch (snakes.get(player).getActicePowerUps().get(i).getType()) {
+            for(int i = 0; i <snakes.get(player).getActivePowerUps().size(); i++){
+                if (snakes.get(player).getActivePowerUps().get(i).getEndTime() < System.currentTimeMillis()) {
+                    switch (snakes.get(player).getActivePowerUps().get(i).getType()) {
                         case POWERUP_NOWALLS:
 
                             break;
@@ -134,10 +131,10 @@ public class GameLoop extends AnimationTimer{
                             snakes.get(player).setInvincible(false);
                             break;
                     }
-                    snakes.get(player).getActicePowerUps().remove(i);
+                    snakes.get(player).getActivePowerUps().remove(i);
                     System.out.println("Removed Active PowerUp");
                 } else {
-                    switch (snakes.get(player).getActicePowerUps().get(i).getType()) {
+                    switch (snakes.get(player).getActivePowerUps().get(i).getType()) {
                         case POWERUP_NOWALLS:
                             GameSettings.walls = false;
                             break;
@@ -366,7 +363,7 @@ public class GameLoop extends AnimationTimer{
         }
 
         ArrayList<PowerUp> tempPowerUPList = new ArrayList<PowerUp>();
-        tempPowerUPList.addAll(snakes.get(0).getActicePowerUps());
+        tempPowerUPList.addAll(snakes.get(0).getActivePowerUps());
         tempPowerUPList.addAll(activePowerUps);
         if(!GameSettings.multiplayer) {
             for (int i = 0; i < tempPowerUPList.size(); i++) {
@@ -388,7 +385,7 @@ public class GameLoop extends AnimationTimer{
 
         if(GameSettings.multiplayer){
             ArrayList<PowerUp> tempPowerUPList1 = new ArrayList<PowerUp>();
-            tempPowerUPList1.addAll(snakes.get(0).getActicePowerUps());
+            tempPowerUPList1.addAll(snakes.get(0).getActivePowerUps());
             tempPowerUPList1.addAll(activePowerUps);
             for(int i = 0;i < tempPowerUPList.size(); i++) {
                 switch (tempPowerUPList.get(i).getType()) {
@@ -407,7 +404,7 @@ public class GameLoop extends AnimationTimer{
             }
 
             ArrayList<PowerUp> tempPowerUPList2 = new ArrayList<PowerUp>();
-            tempPowerUPList2.addAll(snakes.get(1).getActicePowerUps());
+            tempPowerUPList2.addAll(snakes.get(1).getActivePowerUps());
             tempPowerUPList2.addAll(activePowerUps);
             for(int i = 0;i < tempPowerUPList.size(); i++){
                 switch (tempPowerUPList.get(i).getType()) {
@@ -458,7 +455,7 @@ public class GameLoop extends AnimationTimer{
                         break;
                     case POWERUP_INVINCIBLE:
                         if (objects.get(i).getPosition().getX() == headPos.getX() && objects.get(i).getPosition().getY() == headPos.getY()) {
-                            snakes.get(player).getActicePowerUps().add(new PowerUp(ObjectType.POWERUP_INVINCIBLE, System.currentTimeMillis() + 5000));
+                            snakes.get(player).getActivePowerUps().add(new PowerUp(ObjectType.POWERUP_INVINCIBLE, System.currentTimeMillis() + 5000));
                             System.out.println("Added activePowerUp");
                             objects.remove(i);
                             soundfx.picked_invincible();
