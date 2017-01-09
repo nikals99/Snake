@@ -22,6 +22,7 @@ public class GameLoop extends AnimationTimer{
     Main main;
 
     GraphicsContext gc;
+    
     long lastLogicTime = 0;
 
     ArrayList<Snake> snakes;

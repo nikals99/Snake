@@ -129,6 +129,7 @@ public class Main extends Application {
 
         primaryStage.setScene(gameScene);
         handleInput();
+        primaryStage.centerOnScreen();
 
         gameLoop = new GameLoop();
         gameLoop.setMain(this);
